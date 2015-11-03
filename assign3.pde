@@ -102,7 +102,7 @@ float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
   for ( int rrr=0; rrr<count; rrr++ ){
   t = rrr * spacingX+w;
   e -= spacingY;
-  image(Img3, t, e+300);
+  image(Img3, t, e+420);
   w++;
   if (t>960){w=-2700;
   }  //enemy2
