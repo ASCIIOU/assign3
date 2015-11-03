@@ -99,8 +99,8 @@ float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
 
 }
 
-  for ( int r=0; r<count; r++ ){
-  t = r * spacingX+w;
+  for ( int rrr=0; rrr<count; rrr++ ){
+  t = rrr * spacingX+w;
   e += spacingY;
   image(Img3, t, e+100);
   w++;
