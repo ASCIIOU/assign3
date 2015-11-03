@@ -1,6 +1,6 @@
 
 
-int x, y, z, m, n, r, q, ddd, k, w, s, ee, mm;
+int x, y, z, m, n, r, q, ddd, k, w, s, ee;
 
 float p;
 float l;
@@ -45,7 +45,6 @@ void setup () {
   p=240;
   ddd=floor(random(50, 420));
   ee=floor(random(250, 450));
-  mm=floor(random(220, 450));
  
 
 
@@ -115,40 +114,36 @@ float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
   for ( int b=0; b<COUNT; b++ ){
   g = b * spacingXX+s;
   u += spacingYY;
-  image(Img3, g, mm);
+  image(Img3, g, u+200);
   s+=0.4028;
   if (g>960){s=-2450;
-  mm=floor(random(250, 420));
   }  //enemy3
   }
   
   for ( int a=0; a<COUNT; a++ ){
   o = a * spacingXX+s;
   v -= spacingYY;
-  image(Img3, o, mm+120);
+  image(Img3, o, v+320);
   s+=0.4028;
   if (o>960){s=-2450;
-  mm=floor(random(250, 420));
   }  //enemy3
   }
   
   for ( int c=0; c<COUNT; c++ ){
   mo = c * spacingXX+s;
   j += spacingYY;
-  image(Img3, mo+125, mm-120);
+  image(Img3, mo+125, j+80);
   s+=0.4028;
   if (mo>960){s=-2450;
-  mm=floor(random(250, 420));
   }  //enemy3
   }
   
   for ( int d=0; d<COUNT; d++ ){
   f = d * spacingXX+s;
   h -= spacingYY;
-  image(Img3, f+120, mm+240);
+  image(Img3, f+120, h+440);
   s+=0.4028;
   if (f>960){s=-2450;
-  mm=floor(random(250, 420));
   }  //enemy3
   }
   
