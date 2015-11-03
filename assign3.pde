@@ -44,7 +44,7 @@ void setup () {
   l=580;
   p=240;
   ddd=floor(random(50, 420));
-  ee=floor(random(250, 420));
+  ee=floor(random(250, 450));
  
 
 
@@ -106,7 +106,7 @@ float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
   image(Img3, t, e+ee);
   w++;
   if (t>960){w=-2700;
-  ee= floor(random(250, 420));
+  ee= floor(random(250, 450));
   }  //enemy2
 }
   
