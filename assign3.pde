@@ -1,6 +1,6 @@
 
 
-int x, y, z, m, n, r, q, d, k, w, s;
+int x, y, z, m, n, r, q, do, k, w, s;
 
 float p;
 float l;
@@ -43,7 +43,7 @@ void setup () {
   q=floor(random(50, 440));
   l=580;
   p=240;
-  d=floor(random(50, 420));
+  do=floor(random(50, 420));
  
 
 
@@ -90,12 +90,12 @@ float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
 
   for (int i=0; i<count; i++){
   m = i * spacingX+k;
-  q = d;
+  q = do;
   image(Img3, m, q);
   k++;
   if (m>960){k=-2700;
-  d=floor(random(50, 420));
-  q=d;}  //enemy1
+  do=floor(random(50, 420));
+  q=do;}  //enemy1
 
 }
 
