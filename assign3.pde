@@ -1,238 +1,181 @@
+PImage bg1;
+PImage bg2;
+PImage end1;
+PImage end2;
+PImage enemy;
+PImage fighter;
+PImage hp;
+PImage enemy1;
+PImage start1;
+PImage start2;
+PImage treasure;
+
+int x,y,xx,yy,xxx,yyy,i,j,t,t2;
+int con = 0;
+
+boolean upPressed = false; 
+boolean downPressed = false; 
+boolean leftPressed = false; 
+boolean rightPressed = false; 
 
 
-int x, y, z, m, n, r, q, ddd, k, w, s, ee, mm;
 
-float p;
-float l;
-float speed = 5; 
+float life=0;
 
-boolean upPressed = false;
-boolean downPressed = false;
-boolean leftPressed = false;
-boolean rightPressed = false;
-
-float  Img3X = 70;
-
-PImage Img0;
-PImage Img1;
-PImage Img2;
-PImage Img3;
-PImage Img4;
-PImage Img5;
-PImage Img6;
-PImage Img7;
-PImage Img8;
-PImage Img9;
-
-
+int xSpeed=5;
+int ySpeed=5;
+int xxSpeed=5;
+float yySpeed=2.5;
+float YY=0;
 
 void setup () {
-  size(640, 480) ;
 
-
+  life = 195*0.2;
+  t2=-60*5;
   
-  n=0;
-  r=640;
-  k=-375;
-  w=-1500;
-  s=-2350;
-
-  x=40;
-  y=floor(random(50, 540));
-  z=floor(random(50, 440));
-  q=floor(random(50, 440));
-  l=580;
-  p=240;
-  ddd=floor(random(50, 420));
-  ee=floor(random(200, 450));
-  mm=floor(random(150, 250));
-
-
-  Img0 = loadImage("img/fighter.png"); 
-  Img1 = loadImage("img/hp.png");
-  Img2 = loadImage("img/treasure.png");
-  Img3 = loadImage("img/enemy.png");
-  Img4 = loadImage("img/bg1.png");
-  Img5 = loadImage("img/bg2.png");
-
-
-
+  size(640, 480) ;
+  
+  x=width-50;
+  y=height/2-25;
+  
+  bg1 = loadImage("img/bg1.png");
+  bg2 = loadImage("img/bg2.png");
+  enemy = loadImage("img/enemy.png");
+  fighter = loadImage("img/fighter.png");
+  hp = loadImage("img/hp.png");
+  treasure = loadImage("img/treasure.png");
+  start1 = loadImage("img/start1.png");
+  start2 = loadImage("img/start2.png");
+  
+  xx=floor(random(600));
+  yy=floor(random(440));
+  xxx=0;
+  yyy=floor(random(420));
+  YY=floor(random(0,height-60));
+  
 
 }
 
 void draw() {
-
-  
-  image(Img4, n, 0);
-  image(Img5, r, 0);
  
-   n++;
-   r++;
-   if(n>640){n=-640;n++;}
-   if(r>640){r=-640;r++;}
- 
-   stroke(225, 0, 0);
- fill(225, 0, 0);
- rect(25, 25, x, 20);
+      image(bg1,t,0);
+      image(bg2,t-640,0);
+      image(bg1,t-1280,0);
+      t++;
+      t%=1280;
+      
+      noStroke();
+      fill(255,0,0);
+      rect(10,0,life,20);
+      
+      image(hp,0,0);                    
+      image(treasure,xx,yy);
+      image(fighter,x,y);         
+      translate(t2,0);  
+      t2+=5;
   
-  
-  image(Img0, l, p);
-  image(Img1, 20, 20);
-  image(Img2, y, z);
-
-final int count=5;
-final int COUNT=3;
-float spacingX = width/count-50;
-float spacingY = height/count-50;
-float spacingXX = width/COUNT-150;
-float spacingYY = height/COUNT-100;
-float m=0, q=0, t=0, e=0, g=0, u=0, o=0, v=0, mo=0, j=0, f=0, h=0;
-
-
-  for (int i=0; i<count; i++){
-  m = i * spacingX+k;
-  q = ddd;
-  image(Img3, m, q);
-  k++;
-  if (m>960){k=-2700;
-  ddd=floor(random(50, 420));
-  q=ddd;}  //enemy1
-
+      for (int i=1;i<=5;i++){
+        for (int j=1;j<=5;j++){
+          switch(con%3){
+            case 0:
+            image(enemy,i*60,YY);
+            break;
+            case 1:
+            if (i+j==6){
+            image(enemy,i*60,YY+(j-1)*40);
+            }
+            break;
+            case 2:
+            if (abs(j-3)+abs(i-3)==2){
+              image(enemy,i*60,YY+(j-1)*60);
+            }
+            break;
+          }
+        }
+      }
+          
+      if (t2>=width){
+          t2=-60*5;  
+          switch(con%3){
+            case 0:
+            YY=floor(random(0,height-200));
+            break;
+            
+            case 1:
+            YY=floor(random(0,height-300));
+            break;
+            
+            case 2:
+            YY=floor(random(0,height-60));       
+              break;
+          }
+          con++;
+      }
+        if (upPressed){
+        y-=ySpeed;
+      }
+      if (downPressed){
+        y+=ySpeed;
+      }
+        if (rightPressed){
+          x+=xSpeed;
+      }
+      if (leftPressed){
+        x-=xSpeed;
+      }
+      
+      if (x<=0){
+        x=0;
+      }
+      if (x>=width-50){
+        x=width-50;
+      }
+      if (y<=0){
+        y=0;
+      }
+      if (y>=height-50){
+        y=height-50;
+      }
+                                
+      if ((x>=xx-50)&(x<=xx+40)&(y>=yy-50)&(y<yy+40)){
+        xx=floor(random(600));
+        yy=floor(random(440));
+        life+=19.5;
+           if (life >=195){
+           life =195;
+           }
+      }
 }
-
-  for ( int rrr=0; rrr<count; rrr++ ){
-  t = rrr * spacingX+w;
-  e -= spacingY;
-  image(Img3, t, e+ee);
-  w++;
-  if (t>960){w=-2700;
-  ee= floor(random(200, 450));
-  }  //enemy2
-}
-  
-  
-  for ( int b=0; b<COUNT; b++ ){
-  g = b * spacingXX+s;
-  u += spacingYY;
-  image(Img3, g, u+mm);
-  s+=0.4028;
-  if (g>960){s=-2450;
-  mm=floor(random(150, 250));
-  }  //enemy3
-  }
-  
-  for ( int a=0; a<COUNT; a++ ){
-  o = a * spacingXX+s;
-  v -= spacingYY;
-  image(Img3, o, v+mm+120);
-  s+=0.4028;
-  if (o>960){s=-2450;
-  mm=floor(random(150, 250));
-  }  //enemy3
-  }
-  
-  for ( int c=0; c<COUNT; c++ ){
-  mo = c * spacingXX+s;
-  j += spacingYY;
-  image(Img3, mo+125, j+mm-120);
-  s+=0.4028;
-  if (mo>960){s=-2450;
-  mm=floor(random(150, 250));
-  }  //enemy3
-  }
-  
-  for ( int d=0; d<COUNT; d++ ){
-  f = d * spacingXX+s;
-  h -= spacingYY;
-  image(Img3, f+120, h+mm+240);
-  s+=0.4028;
-  if (f>960){s=-2450;
-  mm=floor(random(150, 250));
-  }  //enemy3
-  }
-  
-  
-  
-  if (upPressed) { 
-     p -= speed; 
-   } 
-   if (downPressed) { 
-     p += speed; 
-   } 
-   if (leftPressed) { 
-     l -= speed; 
-   } 
-   if (rightPressed) { 
-     l += speed; 
-   } 
-   
-   
-   
-   if(l>width-55){
-   l=width-55;}
-   if(l<0){
-   l=0;}
-   if(p>height-55){
-   p=height-55;}
-   if(p<0){
-   p=0;}
-   
-   
-  
-   
-   if(l>y-30 && l<y+30 && p>z-30 && p<z+30){
-   x=x+20;
-   y=floor(random(50, 540));
-   z=floor(random(50, 440));
- }
-  
-   if(x>200){x=200;};
-
-
-    
-
-    }  
-  
-
+     
 void keyPressed(){
-  if (key == CODED){
-  switch(keyCode){
-    case UP:
-    upPressed = true;
-    break;
-    case DOWN:
-    downPressed = true;
-    break;
-    case LEFT:
-    leftPressed = true;
-    break;
-    case RIGHT:
-    rightPressed = true;
-    break;
+  if (key==CODED){
+     if (keyCode == UP){
+        upPressed=true;
+     }else if (keyCode == DOWN){
+              downPressed=true;
+           }
   
+      if (keyCode == RIGHT){
+         rightPressed=true;
+      }else if (keyCode == LEFT){
+                leftPressed=true;
+             }
   }
-  }
-  
 
 }
 void keyReleased(){
-if (key == CODED){
-  switch(keyCode){
-    case UP:
-    upPressed = false;
-    break;
-    case DOWN:
-    downPressed = false;
-    break;
-    case LEFT:
-    leftPressed = false;
-    break;
-    case RIGHT:
-    rightPressed = false;
-    break;
-  
-  }
-  }
- 
-  
+   if (key==CODED){
+       if (keyCode == UP){
+          upPressed=false;
+       }else if (keyCode == DOWN){
+                downPressed=false;
+             }
+   
+      if (keyCode == RIGHT){
+         rightPressed=false;
+      }else if (keyCode == LEFT){
+                leftPressed=false;
+             }
+   }
+
 }
